@@ -4,8 +4,35 @@
 
 ---
 
+## Por Qué Este Departamento Es el Más Crítico de Toda la Empresa
+
+> **Dato real:** AX Holding Group perdió 50+ clientes en 6 meses. No por servicio deficiente — por falta de comunicación, seguimiento y registro de actividad.
+>
+> Customer Success no es un departamento "nice to have". Es el departamento que determina si la empresa sobrevive.
+> Con 7 clientes activos hoy y 50+ que se fueron, **retener es más urgente que captar.**
+
+### El Ciclo de la Hemorragia (cómo se perdieron los 50 clientes)
+
+```
+Cliente entra → Se le hace el servicio → Nadie registra la relación →
+Surge un problema o pregunta → Nadie responde a tiempo →
+Cliente se siente ignorado → Se va sin avisar →
+Nadie lo nota hasta que deja de pagar
+```
+
+### Cómo romper el ciclo (hoy, con lo que tenéis)
+
+```
+Cliente entra → Se registra en HubSpot ese mismo día →
+Check-in automático semanal (n8n + WhatsApp/email) →
+Alerta si no responde en 72h → Contacto proactivo →
+Cliente se siente atendido → Renueva y compra más servicios
+```
+
+---
+
 ## Misión
-Garantizar que cada cliente de AX Holding Group logra los resultados para los que contrató los servicios, maximizando la retención, expansión de cuenta y conversión en embajadores — con IA gestionando el 80% de la comunicación de reporting y soporte rutinario.
+Garantizar que cada uno de los 7 clientes activos recibe atención proactiva, que los 50+ ex-clientes reciben una oportunidad de reactivación, y que ningún cliente futuro se pierde por falta de seguimiento — usando HubSpot y automatizaciones básicas como primera capa de sistema.
 
 ---
 
@@ -63,20 +90,22 @@ Garantizar que cada cliente de AX Holding Group logra los resultados para los qu
 
 ---
 
-## Customer Health Score — Modelo
+## Customer Health Score — Modelo PrepCenter
 
 | Factor | Peso | Verde | Amarillo | Rojo |
 |---|---|---|---|---|
-| Resultados vs. objetivo | 30% | >90% | 70-90% | <70% |
-| Engagement (responde, participa) | 20% | Alto | Medio | Bajo |
-| Uso de servicios | 20% | Activo | Esporádico | Inactivo |
-| Tiempo sin contacto | 15% | <14 días | 14-30 días | >30 días |
-| Facturación al día | 15% | Al corriente | 1 factura | >1 factura |
+| **Volumen enviado este mes** | 30% | ≥ mes anterior | -20% | -50% o sin envíos |
+| **Responde a comunicaciones** | 25% | En <24h | En 1-3 días | No responde o >3 días |
+| **Tiempo sin contacto proactivo nuestro** | 20% | <7 días | 7-14 días | >14 días |
+| **Facturación al día** | 15% | Al corriente | 1 factura pte. | >1 factura pte. |
+| **Servicios adicionales activos** | 10% | 2+ servicios | 1 servicio extra | Solo PrepCenter |
 
-**Acción automática:**
-- Verde: reporte automático + check-in mensual
-- Amarillo: alerta a CS Manager para contacto proactivo en 48h
-- Rojo: escalación a cofundador + plan de recuperación urgente
+**Acción automática (n8n):**
+- **Verde:** Check-in semanal automático (WhatsApp/email) + reporte mensual
+- **Amarillo:** Alerta al Fundador A → llamada proactiva en 48h máximo
+- **Rojo:** Escalación urgente → llamada ese mismo día + plan de recuperación
+
+> **Señal de alarma más importante:** Si un cliente no envía stock durante 2 semanas sin aviso previo, está en riesgo de irse. Contactar inmediatamente.
 
 ---
 

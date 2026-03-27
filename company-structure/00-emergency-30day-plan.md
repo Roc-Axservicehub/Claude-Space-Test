@@ -2,9 +2,60 @@
 
 > **Fecha de inicio:** 2026-03-27
 > **Runway actual:** ~30 días
-> **Diagnóstico:** La empresa es rentable (precio justo tras subida de PVP) pero necesita más volumen de clientes. El modelo funciona. El problema es velocidad de adquisición.
-> **Servicio core:** 3PL / Almacén (mayor ticket, infraestructura lista, precio actualizado)
-> **Estado del pipeline:** 4+ leads activos — el material ya está. El foco es cerrar.
+> **Clientes activos:** 7 (PrepCenter como servicio principal)
+> **MRR:** Variable (depende del volumen procesado en almacén — no es fijo)
+> **Diagnóstico real:** El modelo funciona y hay demanda probada. El problema NO es captación — es retención y seguimiento. Perdisteis 50+ clientes en 6 meses por falta de comunicación y seguimiento.
+> **Oportunidad más rápida:** Reactivar clientes anteriores (ya os conocen, ya compraron, posiblemente insatisfechos con alternativas actuales)
+> **Herramienta crítica sin usar:** HubSpot (instalado, sin configurar bien)
+
+---
+
+## ⚠️ DIAGNÓSTICO RAÍZ — Leer antes que nada
+
+> **El problema no es que no encontréis clientes. Es que los perdéis.**
+
+En los últimos 6 meses habéis perdido 50+ clientes por:
+- Falta de comunicación y seguimiento
+- No registrar la actividad en CRM
+- Sin tiempo para gestionar todo a la vez
+
+Esto significa dos cosas:
+1. **La demanda existe** — si conseguisteis 50+ clientes, el mercado os quiere
+2. **La solución técnica ya la tenéis** — HubSpot está instalado, solo hay que usarlo
+
+**La primera acción de este plan no es una llamada de ventas. Es configurar HubSpot.**
+Sin sistema de seguimiento, los leads que cerréis hoy los perderéis mañana. El ciclo se repetirá.
+
+---
+
+---
+
+## ACCIÓN 0 — Configurar HubSpot HOY (antes de cualquier venta)
+
+> **Tiempo estimado: 2 horas. Impacto: evitar que los próximos 50 clientes se pierdan igual que los anteriores.**
+
+### Setup mínimo HubSpot (en este orden)
+
+**Paso 1 — Pipeline de ventas (30 min)**
+1. Ir a HubSpot → Ventas → Pipeline
+2. Crear/verificar las etapas: `Lead → Contactado → Propuesta enviada → Negociación → Cerrado ganado / Cerrado perdido`
+3. Asignar una "acción siguiente" obligatoria a cada etapa
+
+**Paso 2 — Entrar todos los leads activos (30 min)**
+1. Crear un deal por cada uno de los 4+ leads activos
+2. Etapa actual, nombre del contacto, empresa, servicio solicitado, fecha de último contacto
+3. Crear tarea de seguimiento para cada uno: "Contactar en X días"
+
+**Paso 3 — Entrar los 7 clientes activos (30 min)**
+1. Crear un deal como "Cerrado ganado" para cada cliente
+2. Añadir: servicios que usan actualmente, servicios que han pedido y aún no tienen
+3. Crear tarea de check-in mensual para cada uno
+
+**Paso 4 — Regla de uso obligatorio (5 min)**
+```
+REGLA: Ninguna conversación de ventas o cliente existe si no está en HubSpot.
+WhatsApp → HubSpot. Email → HubSpot. Llamada → HubSpot. Sin excepciones.
+```
 
 ---
 
@@ -33,6 +84,53 @@ PRESIÓN DIARIA:                               = contratos necesarios / 30 = __ 
 - Ticket medio 3PL: €600/mes/cliente
 - Contratos necesarios: 3 clientes nuevos
 - Con 4+ leads activos → **cerrar 3 de esos 4 leads cubre el gap**
+
+---
+
+## SECCIÓN B0 — PRIORIDAD 0.5: Reactivar Clientes Perdidos (Semana 1)
+
+> **Esta es la oportunidad más rápida disponible.** Los 50+ ex-clientes ya os conocen, ya compraron, y probablemente están usando un 3PL alternativo con el que quizás no están satisfechos.
+> Un ex-cliente que vuelve cierra en días, no semanas.
+
+### Cómo identificar a quién contactar
+
+1. Abrir el listado de clientes que abandonaron en los últimos 6 meses
+2. Ordenar por: más reciente + mayor volumen de pedidos que procesaron
+3. Seleccionar los 10-15 más recientes o con mayor potencial
+4. No contactar a los que se fueron por problemas graves de calidad (priorizar los que se fueron por comunicación)
+
+### Script de reactivación (WhatsApp o email — el canal donde ya te conocen)
+
+```
+Asunto: Hemos cambiado — ¿te cuento qué hemos mejorado?
+
+Hola [nombre],
+
+Soy [tu nombre] de AX Holding Group.
+
+Sé que en su momento no pudimos darte el nivel de servicio y atención que
+merecías. Quiero ser directo: fallamos en la comunicación y el seguimiento.
+
+En los últimos meses hemos reestructurado completamente cómo trabajamos:
+→ Sistema de gestión actualizado (Prepbusiness + HubSpot)
+→ Proceso de comunicación y seguimiento formalizado
+→ Precios actualizados (te los comparto si quieres comparar)
+
+Si ahora mismo sigues buscando un 3PL de confianza en España, me gustaría
+que me dieras una segunda oportunidad.
+
+¿Tienes 15 minutos esta semana para que te cuente qué ha cambiado?
+
+[Firma]
+```
+
+**Nota:** La honestidad de este mensaje es su mayor virtud. No finjas que todo iba bien — los ex-clientes lo saben. La transparencia genera confianza.
+
+### Tracker de reactivación
+
+| Ex-cliente | Fecha que se fue | Motivo | Canal | Fecha contacto | Respuesta |
+|---|---|---|---|---|---|
+| | | | | | |
 
 ---
 
@@ -98,31 +196,41 @@ Si el lead está dudando, prueba estas palancas (una a la vez):
 
 ---
 
-## SECCIÓN C — PRIORIDAD 2: Upsell a Clientes Existentes
+## SECCIÓN C — PRIORIDAD 2: Upsell a los 7 Clientes Existentes
 
-> Los clientes actuales ya confían en vosotros. Venderles un servicio adicional es 5x más fácil que adquirir un cliente nuevo.
+> **Dato clave:** Los 7 clientes actuales ya os piden los 5 servicios. Esto no es una oportunidad futura — es demanda sin atender ahora mismo.
 
-### Oportunidades de Upsell por Servicio Actual
+### Las 5 líneas de negocio que piden los clientes
 
-Si el cliente ya usa **3PL**, el siguiente paso natural es:
-- **Amazon Account Management / PPC** — si tiene cuenta Amazon activa y no la gestiona bien
-- **Listing Optimization** — si sus ventas en Amazon son bajas o estancadas
-- **Sourcing** — si está buscando nuevos productos o proveedores
+| Servicio | Estado | Acción |
+|---|---|---|
+| **PrepCenter** (recepción, almacenamiento, prep, expedición) | Activo — servicio principal | Incrementar volumen y upsell a almacenamiento adicional |
+| **Amazon Account Mgmt / PPC** | Pedido pero no entregado | Propuesta esta semana |
+| **Diseño & Creatividad** | Pedido pero no entregado | Propuesta esta semana |
+| **Supply Chain & Sourcing** | Pedido pero no entregado | Propuesta esta semana |
+| **Formación (Ax Mentory®)** | Pedido pero no entregado | Propuesta esta semana |
 
-### Script de Conversación de Upsell
+### Proceso de Upsell para Clientes Actuales
+
+**Paso 1:** Esta semana, habla con cada uno de los 7 clientes (llamada o WhatsApp de 10 min):
+```
+"Hola [nombre], ¿cómo va todo con el almacén?
+Quería comentarte que estamos ampliando los servicios que ofrecemos.
+Sé que antes nos habías preguntado por [servicio que pidió].
+¿Sigues necesitando ayuda con eso? Si quieres te preparo una propuesta concreta."
+```
+
+**Paso 2:** Para cada cliente que confirme interés → propuesta en 48 horas máximo
+
+**Paso 3:** Registrar en HubSpot como oportunidad de upsell con fecha de cierre esperada
+
+### Potencial de upsell inmediato
 
 ```
-"[Nombre], llevamos [X meses] trabajando con vuestra logística y los envíos van bien.
-He estado revisando vuestra cuenta Amazon y he visto [oportunidad específica: ACoS alto /
-ranking bajo en keywords clave / listings sin optimizar].
-
-Podríamos ayudaros también con eso. Trabajamos igual que con la logística:
-un precio fijo mensual, resultados medibles, sin permanencias.
-
-¿Te interesa que te prepare un análisis rápido esta semana?"
+7 clientes × 1 servicio adicional promedio × €300-500/mes = €2.100-3.500/mes adicional
 ```
 
-**Regla:** No hagas upsell genérico. Identifica UNA oportunidad concreta en su negocio antes de la conversación.
+Esto solo con los clientes que ya tienes. Sin conseguir ni un cliente nuevo.
 
 ---
 
@@ -200,33 +308,46 @@ Revisa cada viernes:
 
 ---
 
-## Tracker de la Semana 1
+## Tracker de la Semana 1 — Prioridades Reales
 
 ```
 SEMANA 1 — Del [fecha] al [fecha]
 
-LUNES:
-  [ ] Revisar los 4+ leads y clasificar por urgencia (caliente / tibio / frío)
-  [ ] Enviar propuesta concreta a los 2 más calientes
-  [ ] Mensaje de upsell a 1 cliente existente
+LUNES — Setup (no ventas hasta que esto esté hecho):
+  [ ] Configurar HubSpot: pipeline, 7 clientes, 4+ leads, tareas de seguimiento (2h)
+  [ ] Abrir lista de ex-clientes: identificar los 10 candidatos a reactivar
 
-MARTES:
-  [ ] Seguimiento a propuestas enviadas ayer
-  [ ] Llamada a lead más avanzado
+MARTES — Reactivación + Upsell:
+  [ ] Enviar mensaje de reactivación a los 5 primeros ex-clientes
+  [ ] WhatsApp/llamada a cada uno de los 7 clientes: "¿sigues necesitando ayuda con X?"
+  [ ] Registrar todo en HubSpot (mismo día, no al día siguiente)
 
-MIÉRCOLES:
-  [ ] Activar LinkedIn: 5 mensajes de apertura a ICP de 3PL
-  [ ] Pedir referidos a 2 clientes actuales
+MIÉRCOLES — Leads activos:
+  [ ] Propuesta concreta (precio + fecha de inicio) a los 2 leads más calientes
+  [ ] Seguimiento a reactivaciones del martes que no respondieron
+  [ ] Enviar mensaje a los 5 ex-clientes restantes
 
-JUEVES:
-  [ ] Seguimiento a todos los leads con propuesta pendiente
-  [ ] Reunión interna 15 min: estado del pipeline
+JUEVES — Seguimiento:
+  [ ] Llamar a todos los leads con propuesta enviada (no email — llamada)
+  [ ] Reunión diaria de 15 min: estado del pipeline (Fundador A presenta)
+  [ ] Propuesta de upsell a los 2-3 clientes actuales que confirmaron interés
 
-VIERNES:
-  [ ] Revisión de semáforo de caja
-  [ ] Actualizar tracker de leads
-  [ ] Plan de la semana 2
+VIERNES — Review:
+  [ ] Semáforo de caja: contar contratos cerrados o en estado de cierre
+  [ ] Actualizar HubSpot (todo registrado)
+  [ ] Definir prioridades de la semana 2
+  [ ] Si semáforo amarillo/rojo: activar LinkedIn outreach
 ```
+
+### KPIs de Seguimiento Semanal
+
+| Métrica | Semana 1 | Semana 2 | Semana 3 | Semana 4 |
+|---|---|---|---|---|
+| Leads activos en HubSpot | | | | |
+| Reactivaciones contactadas | | | | |
+| Propuestas enviadas | | | | |
+| Contratos cerrados | | | | |
+| MRR nuevo generado | | | | |
 
 ---
 

@@ -4,8 +4,19 @@
 
 ---
 
+## Contexto Crítico — Fase 0
+
+> **Los fundadores reconocen no tener expertise en ventas.** Esto no es un problema — es un punto de partida honesto.
+> La estrategia de ventas para la Fase 0 está diseñada específicamente para personas sin background comercial:
+> - **Estructura sobre intuición:** Scripts, procesos y HubSpot reemplazan la "habilidad de vender"
+> - **IA como segundo cerebro:** Claude ayuda a preparar cada conversación y propuesta
+> - **Calidez sobre volumen:** Con 50+ ex-clientes, lo que funciona no es prospección fría sino reactivación honesta
+> - **WhatsApp sobre LinkedIn:** El canal donde ya existe la relación primero, el formal después
+
+---
+
 ## Misión
-Generar un flujo predecible y escalable de nuevos clientes para AX Holding Group, construir alianzas estratégicas y desarrollar nuevas líneas de negocio — con IA automatizando la prospección, personalización de outreach y seguimiento del pipeline.
+Generar ingresos nuevos de forma estructurada y predecible — con o sin experiencia previa en ventas — usando un CRM configurado (HubSpot), scripts probados, IA para personalización y foco en los clientes más cercanos antes que en prospección fría.
 
 ---
 
@@ -22,12 +33,12 @@ Generar un flujo predecible y escalable de nuevos clientes para AX Holding Group
 
 ---
 
-## Perfil de Cliente Ideal (ICP)
+## Perfil de Cliente Ideal (ICP) — PrepCenter
 
 | Criterio | Descripción |
 |---|---|
-| **Tipo** | Vendedor Amazon (FBA) con marca propia (Private Label) |
-| **Mercado** | Europa (UK, DE, FR, ES, IT) — principalmente |
+| **Tipo** | Vendedor Amazon FBA que necesita externalizar su logística 3PL |
+| **Mercado** | España principalmente, Europa (UK, DE, FR, IT) en expansión |
 | **Volumen** | €10K-500K/mes en ventas Amazon |
 | **Necesidad** | Logística 3PL, gestión de cuenta, sourcing, o formación |
 | **Fase** | Establecido (no beginner) o en crecimiento activo |
@@ -84,12 +95,49 @@ Generar un flujo predecible y escalable de nuevos clientes para AX Holding Group
 
 ---
 
+## Ventas sin Experiencia en Ventas — El Sistema que Reemplaza la Habilidad
+
+> Los fundadores tienen expertise en logística y operaciones, no en ventas. Aquí está el sistema para que eso no sea una barrera.
+
+### Antes de cada conversación de ventas — Prep con Claude (5 min)
+
+Copiar y completar este prompt en Claude:
+
+```
+Voy a hablar con [nombre] de [empresa]. Vende en Amazon en la categoría [X].
+Quiere información sobre nuestro servicio de PrepCenter / 3PL.
+Su situación actual es: [lo que sé de ellos].
+
+Ayúdame a:
+1. Identificar las 3 preguntas clave que debo hacer para entender su problema
+2. Los argumentos más relevantes para su situación específica
+3. Las posibles objeciones y cómo responderlas
+4. Una propuesta de próximos pasos concreta para cerrar en esta llamada
+```
+
+### Estructura de la Discovery Call (30 min)
+
+```
+0:00-5:00   — Contexto: "Cuéntame sobre tu negocio Amazon"
+5:00-10:00  — Problema: "¿Cómo estás gestionando ahora la logística? ¿Qué no funciona?"
+10:00-15:00 — Presentación: "Esto es lo que hacemos y cómo funciona"
+15:00-20:00 — Fit: "Basándome en lo que me has contado, creo que podemos ayudarte con X"
+20:00-25:00 — Propuesta: "El servicio para tu volumen costaría X/mes. ¿Empezamos?"
+25:00-30:00 — Cierre o siguientes pasos
+```
+
+**Regla de cierre:** Al final de cada llamada, define siempre un siguiente paso concreto con fecha:
+- "Te mando la propuesta hoy antes de las 18h"
+- "¿Cuándo tienes 10 minutos para revisar la propuesta juntos? ¿Jueves a las 11h?"
+
+---
+
 ## SOP Mínimo — Pipeline de Ventas
 
 ### Etapas del Pipeline (HubSpot)
 
 ```
-Prospect → Contacted → Qualified → Demo → Proposal → Negotiation → Closed Won / Lost
+Lead → Contactado → Llamada/Demo → Propuesta enviada → Negociación → Cerrado / Perdido
 ```
 
 | Etapa | Criterio de Entrada | Acción | Tiempo Máximo |

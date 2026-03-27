@@ -11,23 +11,39 @@
 
 | Indicador | Estado | Implicación |
 |---|---|---|
-| **Runway de caja** | ~30 días | Modo emergencia activo. No hay tiempo para estructuración antes de cerrar ventas |
-| **Rentabilidad** | Confirmada tras subida de PVP en 3PL | El modelo funciona. El problema es volumen, no márgenes |
-| **Clientes activos** | 1-5 | Base pequeña. Upsell posible pero insuficiente solo |
-| **Pipeline de ventas** | 4+ leads activos | El activo más valioso ahora mismo. Cerrar antes que cualquier otra cosa |
-| **Servicio core** | 3PL / Almacén | Foco de ventas: aquí está el ticket y la infraestructura |
-| **División de roles** | Sin diferenciación formal | Necesita ajuste urgente para no colisionar en las áreas críticas |
+| **Runway de caja** | ~30 días | Modo emergencia activo |
+| **Rentabilidad** | Confirmada tras subida de PVP en PrepCenter | El modelo funciona. El problema es volumen y retención |
+| **Clientes activos** | **7 clientes** (PrepCenter como core) | Base pequeña pero con upsell inmediato disponible |
+| **MRR** | Variable según volumen procesado | No es fijo — depende de unidades en almacén |
+| **Clientes perdidos (6 meses)** | **50+ clientes** por falta de comunicación y seguimiento | Este es el verdadero diagnóstico. No falta captación — falta retención |
+| **Pipeline de ventas** | 4+ leads activos | Material para cerrar, pero sin CRM configurado se perderán igual |
+| **Servicio core** | PrepCenter (recepción · almacenaje · prep · expedición) | El 80% de ingresos. Almacenaje tiene el margen más alto |
+| **Servicio con mayor margen** | Almacenamiento | Solo asocia gasto de alquiler nave + fijos |
+| **Demanda de upsell** | Los 7 clientes actuales piden los 5 servicios | Ingresos adicionales sin un solo cliente nuevo |
+| **Herramientas disponibles** | HubSpot, Holded, Prepbusiness, Google Drive, WhatsApp | Instaladas pero mal usadas — especialmente HubSpot |
+| **Gap de expertise** | Ventas y RRHH | Ningún fundador tiene background en estas áreas |
+| **Recursos disponibles** | Tiempo personal de los 2 fundadores + Claude | Sin presupuesto para contratar |
+
+### El Diagnóstico Real
+
+> **No perdisteis 50 clientes porque el servicio fuera malo.**
+> **Los perdisteis porque no teníais un sistema para mantenerlos.**
+
+La diferencia entre los 7 clientes que siguen y los 50 que se fueron:
+probablemente los 7 son los que insistieron más o los que tuvieron más paciencia.
 
 ### La Secuencia Correcta para las Próximas Semanas
 
 ```
-HOY → Semana 2:    Cerrar los 4+ leads activos
-Semana 1 → Semana 3:  Upsell a clientes actuales
-Semana 2 → Semana 4:  Si hace falta, activar outreach nuevos leads
-Mes 2 en adelante:     Estructurar, automatizar, contratar
+HOY:               Configurar HubSpot (2h) — stop the bleeding
+Semana 1:          Reactivar 10-15 ex-clientes (ya os conocen, más rápido que nuevos)
+Semana 1-2:        Cerrar los 4+ leads activos
+Semana 1-3:        Upsell a los 7 clientes actuales (piden los 5 servicios)
+Semana 3-4:        Si hace falta más, LinkedIn outreach nuevos leads
+Mes 2 en adelante: Estructurar, automatizar, contratar
 ```
 
-> **El error que no debes cometer ahora:** Dedicar tiempo a estructurar departamentos, implementar herramientas o automatizar procesos ANTES de asegurar la caja. La estructura sirve para escalar. Primero hay que tener algo que escalar.
+> **El error que no debes cometer ahora:** Dedicar tiempo a estructurar departamentos o implementar herramientas ANTES de configurar HubSpot y contactar a los ex-clientes. La estructura sirve para escalar. Primero hay que parar la hemorragia.
 
 **→ Plan de acción inmediato:** [00-emergency-30day-plan.md](./00-emergency-30day-plan.md)
 
