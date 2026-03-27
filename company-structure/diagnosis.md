@@ -5,6 +5,34 @@
 
 ---
 
+## SITUACIÓN ACTUAL — Semana 0 (2026-03-27)
+
+> **Leer antes que nada. Esto define las prioridades reales.**
+
+| Indicador | Estado | Implicación |
+|---|---|---|
+| **Runway de caja** | ~30 días | Modo emergencia activo. No hay tiempo para estructuración antes de cerrar ventas |
+| **Rentabilidad** | Confirmada tras subida de PVP en 3PL | El modelo funciona. El problema es volumen, no márgenes |
+| **Clientes activos** | 1-5 | Base pequeña. Upsell posible pero insuficiente solo |
+| **Pipeline de ventas** | 4+ leads activos | El activo más valioso ahora mismo. Cerrar antes que cualquier otra cosa |
+| **Servicio core** | 3PL / Almacén | Foco de ventas: aquí está el ticket y la infraestructura |
+| **División de roles** | Sin diferenciación formal | Necesita ajuste urgente para no colisionar en las áreas críticas |
+
+### La Secuencia Correcta para las Próximas Semanas
+
+```
+HOY → Semana 2:    Cerrar los 4+ leads activos
+Semana 1 → Semana 3:  Upsell a clientes actuales
+Semana 2 → Semana 4:  Si hace falta, activar outreach nuevos leads
+Mes 2 en adelante:     Estructurar, automatizar, contratar
+```
+
+> **El error que no debes cometer ahora:** Dedicar tiempo a estructurar departamentos, implementar herramientas o automatizar procesos ANTES de asegurar la caja. La estructura sirve para escalar. Primero hay que tener algo que escalar.
+
+**→ Plan de acción inmediato:** [00-emergency-30day-plan.md](./00-emergency-30day-plan.md)
+
+---
+
 ## Parte 1 — Los 8 Errores Más Comunes en MVPs de 2 Personas
 
 ### Error 1: Todo en la cabeza, nada documentado

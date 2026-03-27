@@ -1,23 +1,24 @@
 # Departamento 1 — Executive & Strategy
 
-> **AI%: 40%** | Nivel: C-Suite | Dueño: CEO + COO (cofundadores)
+> **AI%: 40%** | Nivel: Fundadores | Dueño: Fundador A + Fundador B (roles combinados)
+
+> **Nota de fase:** AX Holding Group está en Fase 0-1. Los dos cofundadores cubren simultáneamente las funciones de CEO y COO. No son roles separados — son dos personas que comparten la responsabilidad total con dominios diferenciados por necesidad práctica, no por jerarquía.
 
 ---
 
 ## Misión
-Definir la dirección estratégica de AX Holding Group, establecer OKRs, tomar las decisiones de alto impacto y asegurar la alineación entre todos los departamentos hacia los objetivos del negocio.
+Mantener la empresa operativa, generar caja suficiente para sobrevivir y crecer, tomar las decisiones de alto impacto y sentar las bases del sistema que permitirá escalar con IA al 85%.
 
 ---
 
 ## Responsabilidades Core
 
-- Definición y revisión trimestral de OKRs corporativos
-- Asignación de recursos (presupuesto, tiempo, headcount)
-- Decisiones sobre portfolio de servicios (qué ofrecer, a qué precio, a qué mercado)
-- Partnerships estratégicos y alianzas de negocio
-- Supervisión del P&L (pérdidas y ganancias) de la empresa
-- Gestión de inversores / financiación (si aplica)
-- Comunicación de visión al equipo
+- Ventas y captación de nuevos clientes (urgente — ver [Plan de Emergencia 30 días](../00-emergency-30day-plan.md))
+- Entrega de servicio de calidad a los clientes actuales
+- Gestión del cash flow y control del burn mensual
+- Definición de prioridades semanales (máximo 3 por fundador)
+- Decisiones sobre precios, servicios y clientes
+- Construcción progresiva de los sistemas y procesos del resto de departamentos
 
 ---
 
@@ -25,21 +26,34 @@ Definir la dirección estratégica de AX Holding Group, establecer OKRs, tomar l
 
 | Rol | Tipo | Responsabilidad |
 |---|---|---|
-| CEO | Humano | Visión, ventas enterprise, relaciones externas, fundraising |
-| COO | Humano | Operaciones, procesos, tecnología, ejecución interna |
+| Fundador A | Humano | **Dominio primario: Ventas, relaciones con clientes, nuevos negocios** |
+| Fundador B | Humano | **Dominio primario: Operaciones, entrega del servicio, procesos internos** |
 | Strategic AI Assistant | Agente IA | Síntesis de datos, generación de informes ejecutivos, research de mercado |
 
-### División de Responsabilidades CEO vs COO
+> Los dos fundadores cubren TODO, pero cada uno tiene un dominio donde es el último responsable. Cuando hay colisión, el dueño del dominio tiene la última palabra.
 
-| Área | CEO | COO |
+### División de Dominios — Fase 0-1 (sin equipo)
+
+| Área | Fundador A | Fundador B |
 |---|---|---|
-| Ventas & BD | ✅ Primario | Soporte |
-| Operaciones | Soporte | ✅ Primario |
-| Producto/Servicios | Visión | ✅ Ejecución |
-| Marketing | ✅ Primario | Soporte |
-| Tecnología | Decisión final | ✅ Primario |
-| Finanzas | Aprobación | ✅ Gestión |
-| RRHH | Cultura | ✅ Primario |
+| **Cerrar leads / Ventas** | ✅ PRIMARIO | Solo si se necesita demo técnica |
+| **Relación con clientes activos** | ✅ PRIMARIO | Soporte operativo |
+| **Upsell / Expansión de cuenta** | ✅ PRIMARIO | Soporte |
+| **Operaciones 3PL / Entrega** | Solo urgencias | ✅ PRIMARIO |
+| **Onboarding de nuevos clientes** | Presenta y presenta | ✅ Implementa |
+| **Finanzas / Burn / Cash** | Aprobación | ✅ Monitoreo semanal |
+| **Tecnología / Automatización** | Prioridades | ✅ Ejecución |
+| **Precios / Portfolio** | Decisión conjunta | Decisión conjunta |
+| **Contrataciones futuras** | Decisión conjunta | Decisión conjunta |
+
+### Regla de los dos fundadores
+
+```
+Si Fundador A puede decidirlo solo → lo decide. No consulta.
+Si Fundador B puede decidirlo solo → lo decide. No consulta.
+Si afecta a los dos → 15 minutos de reunión, no 2 horas de debate.
+Si no hay consenso en 48h → el dueño del dominio decide.
+```
 
 ---
 
@@ -57,13 +71,22 @@ Definir la dirección estratégica de AX Holding Group, establecer OKRs, tomar l
 
 ## KPIs del Departamento
 
+### KPIs de Emergencia (Fase 0 — los únicos que importan ahora)
+
 | KPI | Descripción | Frecuencia |
 |---|---|---|
-| MRR (Monthly Recurring Revenue) | Ingresos recurrentes mensuales totales | Mensual |
-| OKR Achievement Rate | % de objetivos clave alcanzados por trimestre | Trimestral |
-| Runway (meses) | Meses de operación con el cash actual | Mensual |
+| **Runway (días)** | Días de caja disponible con el burn actual | **Diario** |
+| **MRR** | Ingresos recurrentes mensuales confirmados | **Semanal** |
+| **Leads en pipeline** | Número de leads activos con propuesta enviada | **Diario** |
+| **Contratos cerrados este mes** | Nuevos contratos firmados | **Diario** |
+
+### KPIs de Crecimiento (Fase 1 en adelante)
+
+| KPI | Descripción | Frecuencia |
+|---|---|---|
+| OKR Achievement Rate | % de objetivos clave alcanzados | Trimestral |
 | NPS de clientes | Net Promoter Score global | Trimestral |
-| Headcount vs. Capacidad | Ratio personas/carga de trabajo | Mensual |
+| Churn Rate | % de clientes que cancelan al mes | Mensual |
 
 ---
 
@@ -75,13 +98,20 @@ Definir la dirección estratégica de AX Holding Group, establecer OKRs, tomar l
 
 ---
 
-## SOP Mínimo — Reunión Semanal de Cofundadores
+## SOP Mínimo — Cadencia de Reuniones por Fase
 
-**Frecuencia:** 1 vez por semana, máximo 60 minutos
-**Agenda estándar:**
-1. Review KPIs de la semana (15 min) — tomados del dashboard automático
+### Fase 0 (Emergencia, 30 días) — Reunión Diaria
+**Frecuencia:** Cada día laborable, 15 minutos máximo
+**Agenda:**
+1. Estado del pipeline de ventas: qué avanzó, qué se bloqueó (5 min — Fundador A)
+2. Estado de operaciones: hay algún bloqueo para onboardear nuevos clientes (5 min — Fundador B)
+3. Decisiones urgentes: máximo 1 (5 min)
+
+### Fase 1 en adelante — Reunión Semanal
+**Frecuencia:** 1 vez por semana, máximo 45 minutos
+**Agenda:**
+1. Review KPIs de la semana (10 min) — del dashboard automático
 2. Blockers y decisiones pendientes (20 min) — máximo 3 items
-3. Prioridades para la semana siguiente (15 min)
-4. Acciones con dueño y fecha (10 min)
+3. Prioridades para la semana siguiente con dueño y fecha (15 min)
 
 **Regla de oro:** Si una decisión puede tomarse por uno solo de los cofundadores, no necesita esta reunión.

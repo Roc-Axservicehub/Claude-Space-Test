@@ -24,7 +24,7 @@
 
 ```mermaid
 graph TD
-    CEO["🏢 Executive & Strategy\n(Dirección · OKRs · Decisiones)"]
+    CEO["👥 Fundador A + Fundador B\n(CEO+COO combinado · Ventas · Ops)"]
 
     CEO --> TECH["⚙️ Technology & AI\n(Infraestructura · Automatización · Dev)"]
     CEO --> OPS["📦 Operations & Logistics\n(3PL · Almacén · Envíos)"]
@@ -98,8 +98,23 @@ Antes de implementar esta estructura, es esencial entender qué salió mal en lo
 
 ## Roadmap de Reconstrucción — Fases
 
-### Fase 1 — Fundamentos (Semanas 1-4)
-- [ ] Definir OKRs del año con roles claros entre los 2 cofundadores
+### FASE 0 — Emergencia: Generar Caja (Semanas 1-4) ⚠️
+
+> **Esta fase es la única que importa ahora mismo.** No avances a Fase 1 hasta tener la caja estabilizada.
+
+- [ ] **HOY:** Clasificar los 4+ leads activos por urgencia (caliente / tibio / frío)
+- [ ] **Esta semana:** Enviar propuesta concreta (precio + fecha de inicio) a los 2 leads más calientes
+- [ ] **Esta semana:** Mensaje de upsell a 1-2 clientes actuales con oportunidad identificada
+- [ ] **Semana 2:** Seguimiento activo hasta cierre o descarte de cada lead
+- [ ] **Semana 2-3:** Activar LinkedIn outreach si los leads actuales no son suficientes
+- [ ] **Cada viernes:** Revisar semáforo de caja — ¿verde, amarillo o rojo?
+
+**→ Plan detallado día a día:** [00-emergency-30day-plan.md](./00-emergency-30day-plan.md)
+
+---
+
+### Fase 1 — Fundamentos (Semanas 5-8, solo si Fase 0 está en verde)
+- [ ] Definir OKRs del trimestre con dominios claros entre cofundadores
 - [ ] Implementar Data & Analytics (Departamento 12) — sin datos no hay nada
 - [ ] Documentar los 3 procesos más críticos en SOPs
 - [ ] Configurar CRM básico (HubSpot free) con pipeline de ventas
