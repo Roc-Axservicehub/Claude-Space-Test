@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organigrama de Departamentos - Ax Holding Group</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-page: #f4f7f6;
+            --ax-dark: #0f172a;
+            --ax-blue: #1e3a8a;
+            --ax-light: #eff6ff;
+            --border-color: #cbd5e1;
+            
+            /* Colores de las 3 ramas */
+            --c-growth: #10b981; /* Verde */
+            --c-core: #f59e0b;   /* Naranja */
+            --c-support: #6366f1; /* Indigo */
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #333;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #1a2b4c 0%, #0056b3 100%);
+            padding: 60px 40px;
+            border-radius: 16px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Contenedor principal del organigrama */
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Tarjeta de Dirección General */
+        .c-suite {
+            background: linear-gradient(135deg, var(--ax-dark) 0%, #1a3a52 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 14px;
+            width: 100%;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+            margin-bottom: 50px;
+            border: 2px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .c-suite h2 {
+            margin-top: 0;
+            color: #38bdf8;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+            padding-bottom: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .c-suite-desc {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .roles-grid-csuite {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .role-pill {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(56, 189, 248, 0.1) 100%);
+            padding: 18px;
+            border-radius: 10px;
+            border: 2px solid rgba(56, 189, 248, 0.3);
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .role-pill:hover {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.3) 0%, rgba(56, 189, 248, 0.2) 100%);
+            transform: scale(1.05);
+            border-color: #38bdf8;
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
+        }
+
+        .role-pill-sub {
+            font-size: 0.75rem;
+            font-weight: normal;
+            margin-top: 8px;
+            color: #cbd5e1;
+        }
+
+        /* Conectores visuales */
+        .connector-vertical {
+            width: 4px;
+            height: 50px;
+            background: linear-gradient(180deg, var(--ax-dark) 0%, rgba(15, 23, 42, 0.3) 100%);
+            margin: 0 auto;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+        }
+
+        .connector-horizontal {
+            width: 100%;
+            max-width: 1100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, var(--ax-dark) 20%, var(--ax-dark) 80%, transparent 100%);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .connector-drop {
+            width: 3px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--ax-dark) 0%, rgba(15, 23, 42, 0.3) 100%);
+        }
+
+        /* Contenedor de las 3 Ramas */
+        .branches-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            width: 100%;
+            margin-top: 0;
+        }
+
+        /* Estilos de las Columnas / Pilares */
+        .branch {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .branch-title {
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.3rem;
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .branch-title:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        .branch-title-sub {
+            font-size: 0.7rem;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .bg-growth { 
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        .bg-core { 
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        .bg-support { 
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        }
+
+        /* Tarjetas de Departamentos */
+        .dept-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 2px solid #e2e8f0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: cardSlideIn 0.5s ease-out;
+        }
+
+        @keyframes cardSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dept-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+            border-color: #cbd5e1;
+        }
+
+        .dept-header {
+            padding: 18px 22px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            border-bottom: 3px solid #e2e8f0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--ax-dark);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+
+        .dept-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--ax-dark) 0%, var(--ax-blue) 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .dept-body {
+            padding: 0;
+        }
+
+        .role-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+            background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0) 100%);
+        }
+
+        .role-item:hover {
+            background: linear-gradient(90deg, rgba(56, 189, 248, 0.04) 0%, rgba(56, 189, 248, 0.02) 100%);
+            padding-left: 24px;
+        }
+
+        .role-item:last-child {
+            border-bottom: none;
+        }
+
+        .role-title {
+            font-weight: 700;
+            color: var(--ax-dark);
+            font-size: 0.97rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .role-level {
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+            color: #1e293b;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .role-desc {
+            font-size: 0.87rem;
+            color: #64748b;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .branches-container {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .branches-container {
+                grid-template-columns: 1fr;
+            }
+            .connector-horizontal {
+                display: none;
+            }
+            .branch-title {
+                margin-top: 30px;
+            }
+            .roles-grid-csuite {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .c-suite {
+                padding: 30px 20px;
+            }
+
+            .roles-grid-csuite {
+                grid-template-columns: 1fr;
+            }
+
+            .branch-title {
+                font-size: 1.1rem;
+            }
+
+            .dept-header {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🏢 Organigrama Estructural Interno</h1>
+        <p>Distribución de departamentos, roles corporativos y especialización del ecosistema Ax Holding Group.</p>
+    </div>
+
+    <div class="org-chart">
+        
+        <div class="c-suite">
+            <h2>1. Dirección General (C-Suite)</h2>
+            <div class="c-suite-desc">Gobierna el holding, asegura la rentabilidad global y marca la estrategia de interconexión entre las 5 líneas de servicio. Opera bajo modelo EOS: CEO como Visionary / COO como Integrator.</div>
+            <div class="roles-grid-csuite">
+                <div class="role-pill">
+                    <div>CEO — Visionary</div>
+                    <div class="role-pill-sub">Visión 3-5 años · BHAG · Cultura · Alianzas estratégicas · Capital Allocation · Portfolio M&A</div>
+                </div>
+                <div class="role-pill">
+                    <div>COO — Integrator</div>
+                    <div class="role-pill-sub">Ejecución operativa · Coordinación cross-funcional · SOPs · Workforce Planning · Resolución de conflictos</div>
+                </div>
+                <div class="role-pill">
+                    <div>CFO</div>
+                    <div class="role-pill-sub">FP&A · Cash Flow · Reporting · Risk Management · Estructura de Capital · Due Diligence</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector-vertical"></div>
+
+        <!-- DEPT 1: DIRECCIÓN ESTRATÉGICA — EQUIPO DE APOYO DIRECTO AL C-SUITE -->
+        <div style="width:100%;max-width:900px;margin:0 auto 35px auto;background:white;border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,0.12);overflow:hidden;border-left:6px solid #38bdf8;">
+            <div style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);padding:22px 30px;border-bottom:3px solid #38bdf8;">
+                <h3 style="color:white;margin:0;font-size:1.25rem;font-weight:700;display:flex;align-items:center;gap:12px;">
+                    <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;background:#38bdf8;border-radius:50%;font-weight:bold;font-size:1rem;color:#0f172a;">1</span>
+                    Dept. 1 — Estrategia Corporativa &amp; Gabinete de Dirección
+                </h3>
+                <p style="color:#94a3b8;margin:8px 0 0;font-size:0.88rem;">Amplifica la capacidad ejecutiva del C-Suite · Gestiona la cadencia operativa · Garantiza alineación entre pilares</p>
+            </div>
+            <div style="padding:28px 30px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+
+                <!-- ROLES DE APOYO -->
+                <div>
+                    <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#38bdf8;margin-bottom:14px;">Roles de Apoyo Directo</div>
+                    <div style="margin-bottom:12px;padding:12px;background:#f8fafc;border-radius:8px;border-left:3px solid #38bdf8;">
+                        <div style="font-weight:700;font-size:0.9rem;">Chief of Staff <span style="background:#dbeafe;color:#1d4ed8;font-size:0.65rem;padding:2px 8px;border-radius:10px;font-weight:600;margin-left:6px;">Mando</span></div>
+                        <p style="color:#64748b;font-size:0.82rem;margin:5px 0 0;line-height:1.5;">Priorización de OKRs · Proyectos cross-funcionales · Filtro de comunicaciones del CEO · Prep de Board Meetings · Sistema de alerta temprana</p>
+                    </div>
+                    <div style="margin-bottom:12px;padding:12px;background:#f8fafc;border-radius:8px;border-left:3px solid #38bdf8;">
+                        <div style="font-weight:700;font-size:0.9rem;">FP&A Analyst <span style="background:#dbeafe;color:#1d4ed8;font-size:0.65rem;padding:2px 8px;border-radius:10px;font-weight:600;margin-left:6px;">Especialista</span></div>
+                        <p style="color:#64748b;font-size:0.82rem;margin:5px 0 0;line-height:1.5;">Budgets y forecasts · Dashboards ejecutivos · Scenario modeling · Preparación de board decks · P&amp;L consolidado del holding</p>
+                    </div>
+                    <div style="margin-bottom:12px;padding:12px;background:#f8fafc;border-radius:8px;border-left:3px solid #38bdf8;">
+                        <div style="font-weight:700;font-size:0.9rem;">Asesor Legal (Fraccional) <span style="background:#f0fdf4;color:#16a34a;font-size:0.65rem;padding:2px 8px;border-radius:10px;font-weight:600;margin-left:6px;">Externo</span></div>
+                        <p style="color:#64748b;font-size:0.82rem;margin:5px 0 0;line-height:1.5;">Contratos B2B · NDA y SOWs · Compliance RGPD · Estructura societaria holding · IP y TOS Amazon</p>
+                    </div>
+                    <div style="padding:12px;background:#f8fafc;border-radius:8px;border-left:3px solid #38bdf8;">
+                        <div style="font-weight:700;font-size:0.9rem;">Executive Assistant <span style="background:#dbeafe;color:#1d4ed8;font-size:0.65rem;padding:2px 8px;border-radius:10px;font-weight:600;margin-left:6px;">Soporte</span></div>
+                        <p style="color:#64748b;font-size:0.82rem;margin:5px 0 0;line-height:1.5;">Gestión de agenda C-Suite · Viajes y logística · Coordinación de reuniones estratégicas · Comunicaciones corporativas</p>
+                    </div>
+                </div>
+
+                <!-- KPIS DEL C-SUITE -->
+                <div>
+                    <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#38bdf8;margin-bottom:14px;">KPIs Estratégicos (Scorecard EOS)</div>
+                    <div style="background:#f8fafc;border-radius:8px;padding:14px;border:1px solid #e2e8f0;">
+                        <table style="width:100%;font-size:0.8rem;border-collapse:collapse;">
+                            <tr style="border-bottom:1px solid #e2e8f0;">
+                                <td style="padding:6px 4px;color:#475569;font-weight:600;">Revenue Growth</td>
+                                <td style="padding:6px 4px;color:#0f172a;font-weight:700;text-align:right;">≥15% YoY</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #e2e8f0;">
+                                <td style="padding:6px 4px;color:#475569;font-weight:600;">EBITDA Margin</td>
+                                <td style="padding:6px 4px;color:#0f172a;font-weight:700;text-align:right;">20-30%</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #e2e8f0;">
+                                <td style="padding:6px 4px;color:#475569;font-weight:600;">LTV : CAC Ratio</td>
+                                <td style="padding:6px 4px;color:#10b981;font-weight:700;text-align:right;">≥ 3:1</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #e2e8f0;">
+                                <td style="padding:6px 4px;color:#475569;font-weight:600;">Net Revenue Retention</td>
+                                <td style="padding:6px 4px;color:#10b981;font-weight:700;text-align:right;">&gt;110%</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #e2e8f0;">
+                                <td style="padding:6px 4px;color:#475569;font-weight:600;">Churn Rate</td>
+                                <td style="padding:6px 4px;color:#0f172a;font-weight:700;text-align:right;">&lt;5%/mes</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #e2e8f0;">
+                                <td style="padding:6px 4px;color:#475569;font-weight:600;">NPS</td>
+                                <td style="padding:6px 4px;color:#10b981;font-weight:700;text-align:right;">&gt;50</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #e2e8f0;">
+                                <td style="padding:6px 4px;color:#475569;font-weight:600;">Gross Margin</td>
+                                <td style="padding:6px 4px;color:#0f172a;font-weight:700;text-align:right;">&gt;50%</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #e2e8f0;">
+                                <td style="padding:6px 4px;color:#475569;font-weight:600;">Cash Runway</td>
+                                <td style="padding:6px 4px;color:#10b981;font-weight:700;text-align:right;">&gt;6 meses</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:6px 4px;color:#475569;font-weight:600;">Employee Engagement</td>
+                                <td style="padding:6px 4px;color:#0f172a;font-weight:700;text-align:right;">&gt;70%</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- CADENCIA DE REUNIONES -->
+                <div>
+                    <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#38bdf8;margin-bottom:14px;">Cadencia de Reuniones (EOS + Scaling Up)</div>
+                    <div style="margin-bottom:10px;padding:11px 14px;background:#f8fafc;border-radius:8px;border-left:3px solid #10b981;">
+                        <div style="font-weight:700;font-size:0.85rem;color:#0f172a;">Daily Huddle <span style="color:#64748b;font-weight:400;font-size:0.8rem;">— 10 min · De pie</span></div>
+                        <p style="color:#64748b;font-size:0.8rem;margin:3px 0 0;">Titulares · Número del día · Bloqueos · Prioridad del día. No se hace el día del L10.</p>
+                    </div>
+                    <div style="margin-bottom:10px;padding:11px 14px;background:#f8fafc;border-radius:8px;border-left:3px solid #f59e0b;">
+                        <div style="font-weight:700;font-size:0.85rem;color:#0f172a;">L10 Weekly Meeting <span style="color:#64748b;font-weight:400;font-size:0.8rem;">— 90 min · Fija</span></div>
+                        <p style="color:#64748b;font-size:0.8rem;margin:3px 0 0;">Scorecard · Rocks · Headlines · To-Dos · IDS (60 min) · Rating 1-10.</p>
+                    </div>
+                    <div style="margin-bottom:10px;padding:11px 14px;background:#f8fafc;border-radius:8px;border-left:3px solid #8b5cf6;">
+                        <div style="font-weight:700;font-size:0.85rem;color:#0f172a;">Monthly Business Review <span style="color:#64748b;font-weight:400;font-size:0.8rem;">— 3-4h</span></div>
+                        <p style="color:#64748b;font-size:0.8rem;margin:3px 0 0;">P&amp;L completo · Tendencias de clientes y equipo · Issues estratégicos · Training.</p>
+                    </div>
+                    <div style="margin-bottom:10px;padding:11px 14px;background:#f8fafc;border-radius:8px;border-left:3px solid #ec4899;">
+                        <div style="font-weight:700;font-size:0.85rem;color:#0f172a;">Quarterly Planning <span style="color:#64748b;font-weight:400;font-size:0.8rem;">— 1-2 días offsite</span></div>
+                        <p style="color:#64748b;font-size:0.8rem;margin:3px 0 0;">Review Rocks · Nuevos Rocks (3-7 con owner) · V/TO · Prioridad #1 del trimestre.</p>
+                    </div>
+                    <div style="padding:11px 14px;background:#f8fafc;border-radius:8px;border-left:3px solid #ef4444;">
+                        <div style="font-weight:700;font-size:0.85rem;color:#0f172a;">Annual Offsite <span style="color:#64748b;font-weight:400;font-size:0.8rem;">— 2-3 días</span></div>
+                        <p style="color:#64748b;font-size:0.8rem;margin:3px 0 0;">Core Values · 10-year Target · 7 Strata Strategy · SWOT · Rocks Q1 · Plan de personas.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="connector-vertical"></div>
+        <div class="connector-horizontal">
+            <div class="connector-drop" style="margin-left: 16%;"></div>
+            <div class="connector-drop"></div>
+            <div class="connector-drop" style="margin-right: 16%;"></div>
+        </div>
+
+        <div class="branches-container">
+            
+            <!-- RAMA 1: GROWTH -->
+            <div class="branch">
+                <div class="branch-title bg-growth">
+                    Pilar de Growth
+                    <div class="branch-title-sub">Motor de Ingresos</div>
+                </div>
+                
+                <div class="dept-card">
+                    <div class="dept-header">
+                        <span class="dept-number">2</span>
+                        Ventas y Éxito del Cliente
+                    </div>
+                    <div class="dept-body">
+                        <div class="role-item">
+                            <div class="role-title">Director de Revenue (CRO) <span class="role-level">Mando</span></div>
+                            <p class="role-desc">Estrategia de embudos B2B y métricas de adquisición (CAC, LTV).</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Ejecutivo de Cuentas (Closer) <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Negociación de alto valor y cierre de contratos B2B.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Growth Marketer / Trafficker <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Captación de leads B2B (Ads) y automatización de marketing.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Customer Success Manager <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Onboarding, retención y Cross-Selling interno.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RAMA 2: CORE OPERATIVO -->
+            <div class="branch">
+                <div class="branch-title bg-core">
+                    Pilar Core Operativo
+                    <div class="branch-title-sub">Motor de Producción</div>
+                </div>
+                
+                <div class="dept-card">
+                    <div class="dept-header">
+                        <span class="dept-number">3</span>
+                        Operaciones Físicas
+                    </div>
+                    <div class="dept-body">
+                        <div class="role-item">
+                            <div class="role-title">Supply Chain Manager <span class="role-level">Mando</span></div>
+                            <p class="role-desc">Gestión global del almacén y flujos normativos de Amazon.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Técnico de Aduanas <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Incoterms, despachos y coordinación de fletes de importación.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Auditor de Calidad (QA) <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Inspección estricta y detección de daños en mercancías.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Operario Especializado FBA <span class="role-level">Ejecutor</span></div>
+                            <p class="role-desc">Etiquetado FNSKU, polybagging, paletizado para Amazon.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dept-card">
+                    <div class="dept-header">
+                        <span class="dept-number">4</span>
+                        Producción Digital
+                    </div>
+                    <div class="dept-body">
+                        <div class="role-item">
+                            <div class="role-title">Director Creativo Digital <span class="role-level">Mando</span></div>
+                            <p class="role-desc">Identidad visual e innovación en UI/UX del ecosistema.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Diseñador E-commerce <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Contenido A+, Brand Stores y normativas visuales TOS.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Artista 3D / Renderista <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Modelado fotorrealista de productos físicos.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Desarrollador Web <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Shopify/WooCommerce, optimización de velocidad y pagos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dept-card">
+                    <div class="dept-header">
+                        <span class="dept-number">5</span>
+                        Consultoría y Conocimiento
+                    </div>
+                    <div class="dept-body">
+                        <div class="role-item">
+                            <div class="role-title">Consultor Senior Seller Central <span class="role-level">Mando</span></div>
+                            <p class="role-desc">Resolución de bloqueos, POAs y auditoría profunda.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Estrategista PPC / SEO <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Algoritmo A10 y optimización de campañas Sponsored.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Diseñador Instruccional <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Pedagogía y estructuración de temarios para la Academia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RAMA 3: SOPORTE -->
+            <div class="branch">
+                <div class="branch-title bg-support">
+                    Pilar de Soporte
+                    <div class="branch-title-sub">Motor Interno Corporativo</div>
+                </div>
+                
+                <div class="dept-card">
+                    <div class="dept-header">
+                        <span class="dept-number">6</span>
+                        Tecnología e IA
+                    </div>
+                    <div class="dept-body">
+                        <div class="role-item">
+                            <div class="role-title">Arquitecto de Sistemas (CTO) <span class="role-level">Mando</span></div>
+                            <p class="role-desc">Infraestructura cloud, ciberseguridad y gestión ERP/CRM.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Desarrollador de Integraciones <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Conexiones API (Amazon SP-API) y flujos WMS.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Ingeniero de Automatización/IA <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Agentes de IA internos y automatización del back-office.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dept-card">
+                    <div class="dept-header">
+                        <span class="dept-number">7</span>
+                        Talento y Administración
+                    </div>
+                    <div class="dept-body">
+                        <div class="role-item">
+                            <div class="role-title">HR Business Partner <span class="role-level">Mando</span></div>
+                            <p class="role-desc">Cultura, evaluación de desempeño y clima laboral.</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Talent Acquisition <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Reclutamiento de perfiles altamente técnicos (Amazon).</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Controller Administrativo <span class="role-level">Especialista</span></div>
+                            <p class="role-desc">Facturación, cobros, nóminas y contabilidad analítica.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flujo Interno - Ax Holding Group</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #f0f2f5;
+            --text-main: #333;
+            --ax-blue: #0f172a;
+            --ax-light-blue: #38bdf8;
+            --growth: #10b981;
+            --consultoria: #f59e0b;
+            --prod-digital: #8b5cf6;
+            --tech: #ec4899;
+            --ops: #ef4444;
+            --admin: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: var(--text-main);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #1a2b4c 0%, #0056b3 100%);
+            padding: 60px 40px;
+            border-radius: 16px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .business-line {
+            max-width: 1000px;
+            margin: 0 auto 50px auto;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .business-line:hover {
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        .business-header {
+            background: linear-gradient(135deg, var(--ax-blue) 0%, #1a3a52 100%);
+            padding: 30px;
+            border-bottom: 5px solid var(--ax-light-blue);
+        }
+
+        .business-title {
+            font-size: 1.9rem;
+            color: white;
+            margin: 0;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .business-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--ax-light-blue);
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .timeline-content {
+            padding: 35px;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 35px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--ax-light-blue) 0%, #cbd5e1 100%);
+            border-radius: 4px;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 35px;
+            padding-left: 120px;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--ax-blue) 0%, var(--ax-light-blue) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border: 5px solid white;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.15);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
+        }
+
+        .step-content {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding: 22px 25px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            border-left: 5px solid var(--ax-light-blue);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .step:hover .step-content {
+            border-left-color: var(--ax-light-blue);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.12);
+            transform: translateX(6px);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 25px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .badge:hover {
+            transform: scale(1.05);
+        }
+
+        /* Colores por Departamento con Gradientes */
+        .bg-growth { 
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        .bg-consultoria { 
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        .bg-digital { 
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+        .bg-tech { 
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+        }
+        .bg-ops { 
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        .bg-admin { 
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+        }
+
+        .step-text {
+            margin: 0;
+            line-height: 1.7;
+            color: #475569;
+            font-size: 0.98rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .business-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .timeline-content {
+                padding: 25px;
+            }
+
+            .step {
+                padding-left: 100px;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>📊 Flujo Operativo Interno</h1>
+        <p>Recorrido cronológico del cliente por los departamentos de Ax Holding Group</p>
+    </div>
+
+    <div class="business-line">
+        <div class="business-header">
+            <h2 class="business-title">
+                <span class="business-number">1</span>
+                Ax Agency (Gestión Amazon / Seller Central)
+            </h2>
+        </div>
+        <div class="timeline-content">
+            <div class="timeline">
+
+                <!-- FASE 1: PRE-VENTA Y DISCOVERY -->
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (Ventas)</span>
+                        <p class="step-text"><strong>Discovery &amp; Pre-venta (Días -7 a 0).</strong> Llamada de descubrimiento con el prospecto. Auditoría gratuita de cuenta (listings, PPC, Account Health). Elaboración de propuesta con SOW personalizado, SLAs y NDA. Cierre de contrato con definición de modelo de pricing (retainer base + % performance o revenue share) y setup fee.</p>
+                    </div>
+                </div>
+
+                <!-- FASE 2: ACCESO TÉCNICO -->
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <span class="badge bg-tech">Tecnología e IA</span>
+                        <p class="step-text"><strong>Acceso y Configuración Técnica (Días 0-3).</strong> Solicitud y verificación de accesos a Seller Central (nivel admin), Advertising Console y Brand Analytics. Conexión de herramientas de analítica del holding (dashboards BI, software PPC). Apertura de canal de comunicación dedicado (Slack/Teams). Asignación formal del equipo: CSM + Estrategista PPC + Consultor Senior.</p>
+                    </div>
+                </div>
+
+                <!-- FASE 3: AUDITORÍA INTEGRAL -->
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <span class="badge bg-consultoria">Consultoría y Conocimiento</span>
+                        <p class="step-text"><strong>Auditoría Integral de Cuenta (Días 3-7).</strong> Auditoría completa de listings: títulos, bullets, imágenes, A+ Content, keywords backend y cumplimiento TOS. Auditoría PPC: estructura de campañas, ACoS, TACoS, gasto desperdiciado, bid strategy. Análisis de 3-5 competidores directos. Revisión de Account Health, Buy Box y velocidad de reseñas. Documentación de métricas baseline (revenue, CVR, CTR, ranking orgánico) como línea de referencia de comparación futura.</p>
+                    </div>
+                </div>
+
+                <!-- FASE 4: ESTRATEGIA -->
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <span class="badge bg-consultoria">Consultoría y Conocimiento</span>
+                        <p class="step-text"><strong>Desarrollo de Estrategia (Días 7-14).</strong> Creación del plan de crecimiento con benchmarks a 30/60/90 días. Estrategia PPC con asignación de presupuesto por tipo de campaña (SP, SB, SD). Plan de optimización SEO priorizado por impacto en revenue (keyword research, harvesting de Search Terms). Calendario promocional (deals, coupons, Prime Day). Identificación de quick wins ejecutables en los primeros 14 días.</p>
+                    </div>
+                </div>
+
+                <!-- FASE 5: KICKOFF MEETING -->
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (CSM)</span>
+                        <p class="step-text"><strong>Kickoff Meeting (Días 7-10).</strong> Presentación del equipo asignado con roles y responsabilidades definidas. Validación y aprobación conjunta de la estrategia. Establecimiento de cadencia de comunicación: check-in semanal (30 min), revisión mensual (90 min). Acuerdo formal de KPIs objetivo: revenue, ACoS target, TACoS, ranking de keywords prioritarias, CVR y NPS del cliente.</p>
+                    </div>
+                </div>
+
+                <!-- FASE 6: IMPLEMENTACIÓN Y QUICK WIN -->
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <span class="badge bg-digital">Producción Digital</span>
+                        <p class="step-text"><strong>Implementación y Quick Win (Días 14-21).</strong> Despliegue de primeras optimizaciones de listings (títulos, bullets, keywords backend). Reestructuración de campañas PPC de mayor impacto. Si la auditoría detectó fallos visuales: rediseño de imágenes principales, A+ Content o Brand Store coordinado con el departamento de Producción Digital. Entrega del primer resultado tangible y visible antes del Día 14 para reducir riesgo de churn temprano.</p>
+                    </div>
+                </div>
+
+                <!-- FASE 7: OPERACIONES RECURRENTES -->
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <span class="badge bg-consultoria">Consultoría y Conocimiento</span>
+                        <p class="step-text"><strong>Ciclo de Gestión Mensual Recurrente (Día 30+).</strong> <em>Diario:</em> Gestión de pujas PPC, monitorización de Account Health, tracking de Buy Box y reseñas. <em>Semanal:</em> Keyword harvesting desde Brand Analytics, optimización de negatives, análisis competitivo y ajustes de bid strategy. <em>Mensual:</em> Reestructuración de campañas, refresh de A+ Content/Brand Store, recomendaciones de restock, reporting comprehensivo con métricas de crecimiento y estrategia del próximo mes.</p>
+                    </div>
+                </div>
+
+                <!-- FASE 8: INCIDENCIAS Y ESCALACIÓN -->
+                <div class="step">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <span class="badge bg-consultoria">Consultoría y Conocimiento</span>
+                        <p class="step-text"><strong>Protocolo de Incidencias — POA y Reinstatement (Según necesidad).</strong> Evaluación inmediata de la notificación (24h): identificación del tipo de violación (ODR, autenticidad, IP, código de conducta). Análisis de causa raíz con documentación de evidencia (facturas, acuerdos, comunicaciones). Redacción del Plan of Action (3 pilares: causa raíz + acciones correctivas + medidas preventivas). Envío por Seller Central y seguimiento hasta resolución. Escalación a Executive Seller Relations si es rechazado.</p>
+                    </div>
+                </div>
+
+                <!-- FASE 9: ADMINISTRACIÓN Y FACTURACIÓN -->
+                <div class="step">
+                    <div class="step-number">9</div>
+                    <div class="step-content">
+                        <span class="badge bg-admin">Administración</span>
+                        <p class="step-text"><strong>Facturación y Control Financiero (Mensual).</strong> Emisión de factura mensual: retainer base fijo + componente variable de performance (% sobre incremento de ventas o % de ad spend gestionado). Cierre contable de horas y servicios adicionales (diseño, consultoría puntual). Registro en CRM del historial de cuenta para análisis de LTV y detección de señales de churn.</p>
+                    </div>
+                </div>
+
+                <!-- FASE 10: RETENCIÓN Y UPSELLING -->
+                <div class="step">
+                    <div class="step-number">10</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (CSM)</span>
+                        <p class="step-text"><strong>Retención, Cross-selling y Review (Mensual / Trimestral).</strong> Reunión mensual de resultados: presentación de dashboard con KPIs vs. baseline, logros del mes y plan del siguiente. Detección proactiva de necesidades cross-line: derivación a Ax Prep Center (si el cliente importa), Ax Design (si detecta brechas de conversión visual) o Ax Mentory (si tiene equipo interno que necesita formación). Review trimestral de estrategia y renovación / upsell de contrato.</p>
+                    </div>
+                </div>
+
+                <!-- PASO FANTASMA QUE REEMPLAZAMOS — NO BORRAR EL CIERRE DE TIMELINE -->
+                <div class="step" style="display:none">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (CSM)</span>
+                        <p class="step-text">Reunión mensual de resultados y fomento de cross-selling hacia logística (Ax Prep Center).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="business-line">
+        <div class="business-header">
+            <h2 class="business-title">
+                <span class="business-number">2</span>
+                Ax Prep Center (Logística 3PL)
+            </h2>
+        </div>
+        <div class="timeline-content">
+            <div class="timeline">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (Ventas / CSM)</span>
+                        <p class="step-text">Cierre del acuerdo de tarifas logísticas y onboarding del cliente.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <span class="badge bg-tech">Tecnología e IA</span>
+                        <p class="step-text">Conexión del WMS interno vía Amazon SP-API con el inventario del cliente en Seller Central.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <span class="badge bg-ops">Operaciones Físicas</span>
+                        <p class="step-text">Coordinación de aduanas, recepción física, QA, etiquetado FNSKU, bundling y despacho a centros de Amazon.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <span class="badge bg-admin">Administración</span>
+                        <p class="step-text">Consolidación de unidades procesadas y emisión de facturación automatizada a final de mes.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (CSM)</span>
+                        <p class="step-text">Resolución de incidencias logísticas de nivel 1.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="business-line">
+        <div class="business-header">
+            <h2 class="business-title">
+                <span class="business-number">3</span>
+                Ax Design (Diseño de Contenido)
+            </h2>
+        </div>
+        <div class="timeline-content">
+            <div class="timeline">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (Ventas / CSM)</span>
+                        <p class="step-text">Venta del proyecto cerrado o retainer mensual. Recopilación de briefing y manual de marca.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <span class="badge bg-consultoria">Consultoría y Conocimiento</span>
+                        <p class="step-text">Extracción de ángulos de venta y palabras clave (SEO) para el diseño, asegurando cumplimiento de TOS.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <span class="badge bg-digital">Producción Digital</span>
+                        <p class="step-text">Modelado 3D, renders, maquetación de infografías y creación de Contenido A+ Premium.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (CSM)</span>
+                        <p class="step-text">Presentación al cliente, iteración de cambios y entrega de archivos finales.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <span class="badge bg-admin">Administración</span>
+                        <p class="step-text">Facturación del proyecto o descuento de horas de bolsa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="business-line">
+        <div class="business-header">
+            <h2 class="business-title">
+                <span class="business-number">4</span>
+                Ax Website (Desarrollo E-commerce)
+            </h2>
+        </div>
+        <div class="timeline-content">
+            <div class="timeline">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (Ventas)</span>
+                        <p class="step-text">Cierre del desarrollo, establecimiento de hitos de entrega y pagos parciales.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <span class="badge bg-digital">Producción Digital</span>
+                        <p class="step-text">Aprobación de diseño UI/UX y programación front-end/back-end de la tienda (Shopify/WooCommerce).</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <span class="badge bg-tech">Tecnología e IA</span>
+                        <p class="step-text">Integración de pasarelas de pago y sincronización de stock bidireccional con Amazon MCF.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <span class="badge bg-digital">Producción Digital</span>
+                        <p class="step-text">Pruebas de estrés y Quality Assurance (QA) antes del lanzamiento.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <span class="badge bg-admin">Administración</span>
+                        <p class="step-text">Facturación de los hitos finales.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (CSM)</span>
+                        <p class="step-text">Propuesta de contratos de mantenimiento mensual.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="business-line">
+        <div class="business-header">
+            <h2 class="business-title">
+                <span class="business-number">5</span>
+                Ax Mentory (Formación y Comunidad)
+            </h2>
+        </div>
+        <div class="timeline-content">
+            <div class="timeline">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <span class="badge bg-consultoria">Consultoría y Conocimiento</span>
+                        <p class="step-text">Estructuración, grabación y actualización de temarios según los cambios del algoritmo de Amazon.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <span class="badge bg-tech">Tecnología e IA</span>
+                        <p class="step-text">Mantenimiento de plataforma e-learning (LMS), gestión de accesos y automatización de la comunidad.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (Ventas)</span>
+                        <p class="step-text">Captación de leads mediante embudos y cierre de ventas High-Ticket por videollamada.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <span class="badge bg-admin">Administración</span>
+                        <p class="step-text">Gestión de suscripciones de la academia o planes de pago fraccionado.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <span class="badge bg-growth">Growth (CSM)</span>
+                        <p class="step-text">Soporte a alumnos y derivación interna de alumnos exitosos hacia Ax Prep Center o Ax Agency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

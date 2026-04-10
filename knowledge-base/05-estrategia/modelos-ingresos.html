@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelos de Ingresos — Ax Service Hub Group</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ax-dark: #0f172a;
+            --ax-blue: #38bdf8;
+            --c1: #10b981;
+            --c2: #3b82f6;
+            --c3: #8b5cf6;
+            --c4: #f59e0b;
+            --c5: #ec4899;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #333;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #1a2b4c 0%, #0056b3 100%);
+            padding: 60px 40px;
+            border-radius: 16px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .header h1 { font-size: 2.6rem; font-weight: 700; margin-bottom: 10px; }
+        .header p { font-size: 1.1rem; opacity: 0.85; }
+
+        .max-w { max-width: 1200px; margin: 0 auto; }
+
+        /* Summary strip */
+        .summary-strip {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+
+        .strip-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid;
+            transition: transform 0.2s;
+        }
+        .strip-card:hover { transform: translateY(-3px); }
+        .strip-card.c1 { border-color: var(--c1); }
+        .strip-card.c2 { border-color: var(--c2); }
+        .strip-card.c3 { border-color: var(--c3); }
+        .strip-card.c4 { border-color: var(--c4); }
+        .strip-card.c5 { border-color: var(--c5); }
+
+        .strip-name { font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+        .strip-model { font-size: 0.95rem; font-weight: 700; color: var(--ax-dark); margin-bottom: 4px; }
+        .strip-range { font-size: 0.8rem; color: #475569; }
+
+        /* Service card */
+        .service-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .card-header {
+            padding: 24px 30px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .card-num {
+            width: 50px; height: 50px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1.3rem; flex-shrink: 0;
+        }
+
+        .card-title { font-size: 1.5rem; font-weight: 700; }
+        .card-subtitle { font-size: 0.9rem; opacity: 0.85; margin-top: 2px; }
+
+        .card-body { padding: 30px; }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.2fr 1.2fr;
+            gap: 24px;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+        }
+
+        /* Pricing tiers table */
+        .tier-table { width: 100%; border-collapse: collapse; }
+        .tier-table th {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #475569;
+            text-align: left;
+        }
+        .tier-table td {
+            padding: 10px 12px;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+        }
+        .tier-table tr:last-child td { border-bottom: none; }
+        .tier-table .price { font-weight: 700; color: var(--ax-dark); }
+        .tier-table tr:hover td { background: #f8fafc; }
+
+        /* Metrics column */
+        .metric-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid;
+        }
+        .metric-name { font-size: 0.78rem; font-weight: 700; color: #64748b; margin-bottom: 3px; }
+        .metric-value { font-size: 1.05rem; font-weight: 800; color: var(--ax-dark); }
+        .metric-desc { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
+
+        /* Structure column */
+        .structure-item {
+            padding: 10px 14px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #334155;
+            border-left: 3px solid #e2e8f0;
+        }
+        .structure-item strong { color: var(--ax-dark); display: block; font-size: 0.8rem; margin-bottom: 2px; }
+
+        /* Recommended badge */
+        .rec-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 14px;
+        }
+
+        /* Cross-sell footer */
+        .cross-footer {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+            border-radius: 14px;
+            padding: 28px 32px;
+            color: white;
+            margin-top: 50px;
+        }
+        .cross-footer h3 { font-size: 1.2rem; margin-bottom: 16px; color: #38bdf8; }
+        .journey-flow {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .journey-step {
+            background: rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .journey-arrow {
+            color: #38bdf8;
+            font-size: 1.2rem;
+            padding: 0 8px;
+            font-weight: 300;
+        }
+        .ltv-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .ltv-box {
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            border: 1px solid rgba(56,189,248,0.2);
+        }
+        .ltv-label { font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px; }
+        .ltv-value { font-size: 1.3rem; font-weight: 800; color: #38bdf8; }
+
+        @media(max-width: 900px) {
+            .summary-strip { grid-template-columns: repeat(3, 1fr); }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+        @media(max-width: 600px) {
+            .summary-strip { grid-template-columns: 1fr 1fr; }
+            .journey-flow { flex-direction: column; align-items: flex-start; }
+            .ltv-summary { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="max-w">
+
+    <div class="header">
+        <h1>💰 Modelos de Ingresos</h1>
+        <p>Propuesta de pricing y estructura financiera para las 5 líneas de servicio de Ax Service Hub Group</p>
+    </div>
+
+    <!-- SUMMARY STRIP -->
+    <div class="summary-strip">
+        <div class="strip-card c1">
+            <div class="strip-name">Ax Agency</div>
+            <div class="strip-model">Retainer + Performance</div>
+            <div class="strip-range">€2.500–€8.000/mes</div>
+        </div>
+        <div class="strip-card c2">
+            <div class="strip-name">Ax Prep Center</div>
+            <div class="strip-model">Por Unidad + Tiers</div>
+            <div class="strip-range">€0,40–€1,00/unidad</div>
+        </div>
+        <div class="strip-card c3">
+            <div class="strip-name">Ax Design</div>
+            <div class="strip-model">Proyecto + Retainer</div>
+            <div class="strip-range">€500–€5.000/mes</div>
+        </div>
+        <div class="strip-card c4">
+            <div class="strip-name">Ax Website</div>
+            <div class="strip-model">Proyecto + Mantenimiento</div>
+            <div class="strip-range">€3.000–€100.000</div>
+        </div>
+        <div class="strip-card c5">
+            <div class="strip-name">Ax Mentory</div>
+            <div class="strip-model">Value Ladder Completo</div>
+            <div class="strip-range">€47–€4.997</div>
+        </div>
+    </div>
+
+    <!-- ─── AX AGENCY ─── -->
+    <div class="service-card">
+        <div class="card-header" style="background: linear-gradient(135deg, #059669, #10b981);">
+            <div class="card-num">1</div>
+            <div>
+                <div class="card-title">Ax Agency — Gestión Amazon / Seller Central</div>
+                <div class="card-subtitle">Modelo: Retainer mensual base + componente variable de performance · Contrato mínimo 3–6 meses</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-grid">
+                <div>
+                    <div class="section-label">Estructura de Precios por Tier</div>
+                    <span class="rec-badge" style="background:#10b981;">✓ Modelo Recomendado: Híbrido Retainer + Performance</span>
+                    <table class="tier-table">
+                        <tr><th>Tier</th><th>Revenue del Seller</th><th>Retainer Base</th><th>Performance</th></tr>
+                        <tr><td>Starter</td><td>&lt;€150K/año</td><td class="price">€2.500/mes</td><td>+3% incremento ventas</td></tr>
+                        <tr><td>Growth</td><td>€150K–€500K/año</td><td class="price">€3.500–€5.000/mes</td><td>+3–5% incremento o 12% ad spend</td></tr>
+                        <tr><td>Pro</td><td>€500K–€2M/año</td><td class="price">€5.000–€8.000/mes</td><td>+2–3% revenue share</td></tr>
+                        <tr><td>Enterprise</td><td>&gt;€2M/año</td><td class="price">€8.000–€15.000/mes</td><td>Negociado · KPI-based bonus</td></tr>
+                        <tr style="background:#f0fdf4;"><td colspan="2"><strong>Setup Fee (nuevo cliente)</strong></td><td class="price" colspan="2">€1.500–€2.500 (pago único)</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="section-label">Métricas de Negocio</div>
+                    <div class="metric-box" style="border-color:#10b981;">
+                        <div class="metric-name">LTV Estimado (Growth tier)</div>
+                        <div class="metric-value">€168.000–€280.000</div>
+                        <div class="metric-desc">€4.500/mes × 37–62 meses</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#10b981;">
+                        <div class="metric-name">Churn Anual Benchmark</div>
+                        <div class="metric-value">10–18%</div>
+                        <div class="metric-desc">Top agencies logran &lt;10%</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#10b981;">
+                        <div class="metric-name">Gross Margin Objetivo</div>
+                        <div class="metric-value">55–70%</div>
+                        <div class="metric-desc">Servicios de conocimiento / intelectuales</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#f59e0b;">
+                        <div class="metric-name">Alerta: Upsell en 90 días</div>
+                        <div class="metric-value">62% churn</div>
+                        <div class="metric-desc">Sin upsell en primeros 3 meses → alto riesgo en año 2</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-label">Componentes del Servicio Incluidos</div>
+                    <div class="structure-item"><strong>Base (todo tier)</strong>SEO listings · Gestión PPC · Account Health · Reporting mensual · CSM dedicado</div>
+                    <div class="structure-item"><strong>Growth +</strong>Brand Analytics · A/B testing · Calendario promocional · Estrategia competitiva</div>
+                    <div class="structure-item"><strong>Pro / Enterprise +</strong>Amazon DSP · Multi-marketplace · Team dedicado · POA / reinstatement · Dashboard BI en tiempo real</div>
+                    <div class="structure-item" style="border-color:#10b981;"><strong>Add-ons facturables</strong>Diseño A+ (Ax Design) · Prep logístico (Ax Prep) · Formación equipo interno (Ax Mentory)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── AX PREP CENTER ─── -->
+    <div class="service-card">
+        <div class="card-header" style="background: linear-gradient(135deg, #1d4ed8, #3b82f6);">
+            <div class="card-num">2</div>
+            <div>
+                <div class="card-title">Ax Prep Center — Logística 3PL para Amazon FBA</div>
+                <div class="card-subtitle">Modelo: Precio por unidad procesada con tiers de volumen + tarifas de servicios adicionales · Tailwind: Amazon eliminó su prep in-house en enero 2026</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-grid">
+                <div>
+                    <div class="section-label">Tarifas por Unidad (Recepción + QA + FNSKU + Poly-bag)</div>
+                    <span class="rec-badge" style="background:#3b82f6;">✓ Modelo: Suscripción por Tier de Volumen</span>
+                    <table class="tier-table">
+                        <tr><th>Plan</th><th>Volumen Mensual</th><th>Precio/Unidad</th><th>Mínimo Mensual</th></tr>
+                        <tr><td>Starter</td><td>500–2.000 uds</td><td class="price">€0,95–€1,00</td><td>€500/mes</td></tr>
+                        <tr><td>Growth</td><td>2.000–8.000 uds</td><td class="price">€0,75–€0,85</td><td>€1.500/mes</td></tr>
+                        <tr><td>Pro</td><td>8.000–20.000 uds</td><td class="price">€0,60–€0,70</td><td>€5.000/mes</td></tr>
+                        <tr><td>Enterprise</td><td>&gt;20.000 uds</td><td class="price">€0,40–€0,55</td><td>Negociado</td></tr>
+                    </table>
+                    <div style="margin-top:16px;">
+                        <div class="section-label">Tarifas de Servicios Adicionales</div>
+                        <table class="tier-table">
+                            <tr><th>Servicio</th><th>Tarifa</th></tr>
+                            <tr><td>Bundling (2 items)</td><td class="price">+€0,50/bundle</td></tr>
+                            <tr><td>Bundling complejo (6+ items)</td><td class="price">+€0,05/item extra</td></tr>
+                            <tr><td>Fragile / Bubble wrap</td><td class="price">+€0,50–€1,50/ud</td></tr>
+                            <tr><td>Storage (tras 30 días libres)</td><td class="price">€40–€50/pallet/mes</td></tr>
+                            <tr><td>Descarga de contenedor</td><td class="price">€200–€800/contenedor</td></tr>
+                            <tr><td>Gestión de devoluciones</td><td class="price">€0,50–€1,00/ud</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-label">Métricas de Negocio</div>
+                    <div class="metric-box" style="border-color:#3b82f6;">
+                        <div class="metric-name">LTV Seller Medio (Growth)</div>
+                        <div class="metric-value">€36.000–€61.200</div>
+                        <div class="metric-desc">€1.800/mes × 20–34 meses</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#3b82f6;">
+                        <div class="metric-name">LTV Seller Pro</div>
+                        <div class="metric-value">€96.000–€204.000</div>
+                        <div class="metric-desc">€4.800/mes × 20–42 meses</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#3b82f6;">
+                        <div class="metric-name">Churn Anual (SMB)</div>
+                        <div class="metric-value">20–30%</div>
+                        <div class="metric-desc">Enterprise: &lt;10%</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#3b82f6;">
+                        <div class="metric-name">Gross Margin Objetivo</div>
+                        <div class="metric-value">40–55%</div>
+                        <div class="metric-desc">Margen operativo con tarifa media €0,75</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-label">Estructura del Servicio</div>
+                    <div class="structure-item"><strong>Incluido en todos los tiers</strong>Recepción física · QA inspección · FNSKU labeling · Poly-bagging · Despacho a centros Amazon · Dashboard WMS básico</div>
+                    <div class="structure-item"><strong>Growth / Pro +</strong>Integración SP-API (inventario en tiempo real) · Coordinación de aduanas · Incoterms · Reportes de incidencias</div>
+                    <div class="structure-item"><strong>Enterprise +</strong>Account Manager dedicado · SLA de procesamiento 24-48h · Facturación automatizada · API custom</div>
+                    <div class="structure-item" style="border-color:#3b82f6;"><strong>Cross-sell natural</strong>Clientes de Ax Agency que importan desde Asia son derivación directa a este servicio</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── AX DESIGN ─── -->
+    <div class="service-card">
+        <div class="card-header" style="background: linear-gradient(135deg, #6d28d9, #8b5cf6);">
+            <div class="card-num">3</div>
+            <div>
+                <div class="card-title">Ax Design — Diseño de Contenido Amazon</div>
+                <div class="card-subtitle">Modelo: Per-asset para proyectos one-off + Retainer mensual (bolsa de horas) para clientes recurrentes</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-grid">
+                <div>
+                    <div class="section-label">Pricing Per-Asset (Proyectos one-off)</div>
+                    <span class="rec-badge" style="background:#8b5cf6;">✓ Modelo Dual: Proyecto + Retainer</span>
+                    <table class="tier-table">
+                        <tr><th>Entregable</th><th>Entry</th><th>Standard</th><th>Premium</th></tr>
+                        <tr><td>Set 7 imágenes listing</td><td>€350</td><td class="price">€600–€800</td><td>€1.000–€1.400</td></tr>
+                        <tr><td>A+ Content (1 página)</td><td>€350</td><td class="price">€600–€900</td><td>€1.200–€1.800</td></tr>
+                        <tr><td>Render 3D producto</td><td>€150</td><td class="price">€300–€450</td><td>€600–€1.000</td></tr>
+                        <tr><td>Brand Store (3 páginas)</td><td>€700</td><td class="price">€1.500–€2.500</td><td>€3.000–€5.000</td></tr>
+                        <tr><td>Infografías (set 5)</td><td>€250</td><td class="price">€400–€600</td><td>€800–€1.200</td></tr>
+                    </table>
+                    <div style="margin-top:16px;">
+                        <div class="section-label">Retainer Mensual (Bolsa de Horas)</div>
+                        <table class="tier-table">
+                            <tr><th>Plan</th><th>Horas/mes</th><th>Precio</th><th>Tarifa Hora</th></tr>
+                            <tr><td>Basic</td><td>8–10h</td><td class="price">€1.200/mes</td><td>€120–€150/h</td></tr>
+                            <tr><td>Standard</td><td>15–20h</td><td class="price">€2.500/mes</td><td>€125–€167/h</td></tr>
+                            <tr><td>Premium</td><td>30–40h</td><td class="price">€4.500/mes</td><td>€112–€150/h</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-label">Métricas de Negocio</div>
+                    <div class="metric-box" style="border-color:#8b5cf6;">
+                        <div class="metric-name">LTV Retainer Standard</div>
+                        <div class="metric-value">€22.500–€45.000</div>
+                        <div class="metric-desc">€2.500/mes × 9–18 meses</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#8b5cf6;">
+                        <div class="metric-name">Churn Mensual Retainer</div>
+                        <div class="metric-value">5–10%</div>
+                        <div class="metric-desc">Project-based: 15–25%/trimestre</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#8b5cf6;">
+                        <div class="metric-name">Gross Margin Objetivo</div>
+                        <div class="metric-value">60–75%</div>
+                        <div class="metric-desc">Trabajo intelectual + digital</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#8b5cf6;">
+                        <div class="metric-name">Tarifa Hora Efectiva</div>
+                        <div class="metric-value">€100–€175/h</div>
+                        <div class="metric-desc">Benchmark agencias diseño B2B España</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-label">Estructura del Servicio</div>
+                    <div class="structure-item"><strong>Proyecto Standard</strong>Briefing + Manual de marca · Revisión TOS Amazon · 2 rondas de revisiones · Archivos fuente incluidos</div>
+                    <div class="structure-item"><strong>Retainer</strong>Prioridad de producción · Roll-over de horas no usadas (máx. 1 mes) · Acceso a equipo fijo (no rotación)</div>
+                    <div class="structure-item"><strong>Add-on 3D Premium</strong>Modelado fotorrealista · 360° renders · Lifestyle composites · Animación básica de producto</div>
+                    <div class="structure-item" style="border-color:#8b5cf6;"><strong>Integración cross-line</strong>Ax Agency detecta necesidad → deriva a Ax Design → facturación como add-on del retainer de agencia</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── AX WEBSITE ─── -->
+    <div class="service-card">
+        <div class="card-header" style="background: linear-gradient(135deg, #b45309, #f59e0b);">
+            <div class="card-num">4</div>
+            <div>
+                <div class="card-title">Ax Website — Desarrollo E-commerce</div>
+                <div class="card-subtitle">Modelo: Proyecto por hitos + Mantenimiento mensual recurrente · Plataformas: Shopify / Shopify Plus / WooCommerce</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-grid">
+                <div>
+                    <div class="section-label">Paquetes de Desarrollo (Precio de Proyecto)</div>
+                    <span class="rec-badge" style="background:#f59e0b;">✓ Modelo: Proyecto por Hitos + Mantenimiento Mensual</span>
+                    <table class="tier-table">
+                        <tr><th>Paquete</th><th>Alcance</th><th>Precio</th><th>Timeline</th></tr>
+                        <tr><td>Starter</td><td>Shopify theme setup · &lt;50 productos</td><td class="price">€3.000–€7.000</td><td>3–4 sem</td></tr>
+                        <tr><td>Growth</td><td>Custom Shopify / WooCommerce mid</td><td class="price">€8.000–€20.000</td><td>6–10 sem</td></tr>
+                        <tr><td>Pro</td><td>Shopify Plus / WooCommerce avanzado</td><td class="price">€20.000–€50.000</td><td>10–18 sem</td></tr>
+                        <tr><td>Enterprise</td><td>Custom + integraciones ERP/CRM/MCF</td><td class="price">€50.000–€100.000+</td><td>16–24+ sem</td></tr>
+                    </table>
+                    <div style="margin-top:16px;">
+                        <div class="section-label">Mantenimiento Mensual Recurrente</div>
+                        <table class="tier-table">
+                            <tr><th>Plan</th><th>Incluye</th><th>Precio</th></tr>
+                            <tr><td>Basic</td><td>Updates · Backups · Security</td><td class="price">€300–€500/mes</td></tr>
+                            <tr><td>Standard</td><td>+Dev hours (4–8h) · Performance</td><td class="price">€750–€1.500/mes</td></tr>
+                            <tr><td>Premium</td><td>+Dev prioritario (16h) · CRO · 24h SLA</td><td class="price">€2.000–€4.000/mes</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-label">Métricas de Negocio</div>
+                    <div class="metric-box" style="border-color:#f59e0b;">
+                        <div class="metric-name">LTV Growth (proyecto + mant.)</div>
+                        <div class="metric-value">€24.000–€44.000</div>
+                        <div class="metric-desc">€12.000 proy. + €1.000/mes × 12–32 meses</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#f59e0b;">
+                        <div class="metric-name">LTV Pro/Enterprise</div>
+                        <div class="metric-value">€70.000–€150.000</div>
+                        <div class="metric-desc">€35K proy + €2.500/mes × 14–46 meses</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#f59e0b;">
+                        <div class="metric-name">Churn Mensual Mantenimiento</div>
+                        <div class="metric-value">5–10%</div>
+                        <div class="metric-desc">Bueno: &lt;5% · Típico SMB: 10–15%</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#f59e0b;">
+                        <div class="metric-name">Gross Margin Objetivo</div>
+                        <div class="metric-value">45–65%</div>
+                        <div class="metric-desc">Mayor margen en mantenimiento que en proyecto</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-label">Estructura del Servicio</div>
+                    <div class="structure-item"><strong>Proyecto: Hitos de pago</strong>30% contrato · 30% aprobación diseño · 30% QA aprobado · 10% go-live</div>
+                    <div class="structure-item"><strong>Integraciones clave</strong>Amazon MCF (stock bidireccional) · Pasarelas de pago EU · SEO técnico · Analytics</div>
+                    <div class="structure-item"><strong>QA pre-lanzamiento</strong>Stress testing · Cross-browser · Mobile · Velocidad Core Web Vitals</div>
+                    <div class="structure-item" style="border-color:#f59e0b;"><strong>Upsell natural</strong>Post go-live → Propuesta de mantenimiento Premium + CRO mensual + integración con Ax Agency si venden en Amazon también</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── AX MENTORY ─── -->
+    <div class="service-card">
+        <div class="card-header" style="background: linear-gradient(135deg, #be185d, #ec4899);">
+            <div class="card-num">5</div>
+            <div>
+                <div class="card-title">Ax Mentory — Formación y Comunidad Amazon</div>
+                <div class="card-subtitle">Modelo: Value Ladder completo · Desde lead magnet gratuito hasta mastermind anual high-ticket</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-grid">
+                <div>
+                    <div class="section-label">Value Ladder Completo (Escala de Valor)</div>
+                    <span class="rec-badge" style="background:#ec4899;">✓ Modelo: Value Ladder · Curso Flagship + Comunidad Mensual</span>
+                    <table class="tier-table">
+                        <tr><th>Oferta</th><th>Precio</th><th>Propósito</th></tr>
+                        <tr><td>Lead Magnet / YouTube</td><td class="price">€0</td><td>Confianza · Email list · Awareness</td></tr>
+                        <tr><td>Mini-Curso / Challenge</td><td class="price">€47–€97</td><td>Auto-liquida costes de adquisición</td></tr>
+                        <tr><td><strong>Curso Flagship ⭐</strong></td><td class="price">€797–€997</td><td>Revenue principal · entre Ecommaster y AMZN Elite</td></tr>
+                        <tr><td>Comunidad / Club Mensual</td><td class="price">€49–€79/mes (o €497–€797/año)</td><td>MRR · Mentorships · Discord</td></tr>
+                        <tr><td>Coaching Grupal Add-on</td><td class="price">€149–€249/mes</td><td>Soporte higher-touch · Accountability</td></tr>
+                        <tr><td>Mentoría Privada 1:1</td><td class="price">€199–€299/hora</td><td>Premium · Alto margen · Branding</td></tr>
+                        <tr><td>Mastermind Anual</td><td class="price">€2.997–€4.997/año</td><td>Tier élite · 10–20 plazas · Presencial</td></tr>
+                        <tr><td>Upsell → Servicios Agencia</td><td class="price">€500–€2.500/mes</td><td>Alumnos que quieren done-for-you</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="section-label">Métricas de Negocio</div>
+                    <div class="metric-box" style="border-color:#ec4899;">
+                        <div class="metric-name">LTV Blended por Alumno</div>
+                        <div class="metric-value">€1.500–€2.500</div>
+                        <div class="metric-desc">Curso €897 + comunidad €64/mes × 9–25 meses</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#ec4899;">
+                        <div class="metric-name">Churn Mensual (Comunidad)</div>
+                        <div class="metric-value">5–12%</div>
+                        <div class="metric-desc">Anual reduce a 1/3 del churn mensual</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#ec4899;">
+                        <div class="metric-name">Gross Margin Objetivo</div>
+                        <div class="metric-value">70–85%</div>
+                        <div class="metric-desc">El más alto del portfolio · Coste marginal ≈ €0</div>
+                    </div>
+                    <div class="metric-box" style="border-color:#ec4899;">
+                        <div class="metric-name">Conversión Upsell → Agencia</div>
+                        <div class="metric-value">10–25%</div>
+                        <div class="metric-desc">Alumnos exitosos pasan a cliente de agencia</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-label">Posicionamiento Competitivo España</div>
+                    <div class="structure-item"><strong>Benchmarks reales (mercado ES)</strong>Libertad Virtual: €1.297 · AMZN Elite: €1.949 · Ecommaster: €520–€3.900 · Emprendedora FBA: €180/mes coaching</div>
+                    <div class="structure-item"><strong>Posicionamiento Ax Mentory</strong>Flagship a €897 se ubica entre Ecommaster (€520) y Libertad Virtual (€1.297), con comunidad activa como diferenciador</div>
+                    <div class="structure-item"><strong>Convertir alumnos en clientes</strong>Alumno → Alumni → Cliente Ax Agency (done-for-you) → Cliente Ax Prep Center (si importa) → círculo virtuoso de crecimiento del holding</div>
+                    <div class="structure-item" style="border-color:#ec4899;"><strong>Membresía anual como palanca</strong>El plan anual (€497–€797) genera 3× menos churn que el mensual. Ofrecer descuento del 20–30% para activar conversión anual.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOMER JOURNEY CROSS-LINE + LTV COMPUESTO -->
+    <div class="cross-footer">
+        <h3>🔗 Customer Journey Cross-Line — LTV Compuesto del Holding</h3>
+        <p style="color:#94a3b8;margin-bottom:20px;font-size:0.88rem;">El cliente ideal recorre varias líneas de servicio. El LTV compuesto multiplica el valor de cada captación inicial.</p>
+
+        <div class="journey-flow">
+            <div class="journey-step" style="border-color:rgba(236,72,153,0.4);">🎓 Ax Mentory<br><span style="color:#94a3b8;font-size:0.75rem;">€897 curso</span></div>
+            <div class="journey-arrow">→</div>
+            <div class="journey-step" style="border-color:rgba(16,185,129,0.4);">🏢 Ax Agency<br><span style="color:#94a3b8;font-size:0.75rem;">€3.500+/mes</span></div>
+            <div class="journey-arrow">→</div>
+            <div class="journey-step" style="border-color:rgba(59,130,246,0.4);">📦 Ax Prep Center<br><span style="color:#94a3b8;font-size:0.75rem;">€2.000+/mes</span></div>
+            <div class="journey-arrow">→</div>
+            <div class="journey-step" style="border-color:rgba(139,92,246,0.4);">🎨 Ax Design<br><span style="color:#94a3b8;font-size:0.75rem;">€2.500/mes retainer</span></div>
+            <div class="journey-arrow">→</div>
+            <div class="journey-step" style="border-color:rgba(245,158,11,0.4);">🌐 Ax Website<br><span style="color:#94a3b8;font-size:0.75rem;">€15.000 proy + €1.000/mes</span></div>
+        </div>
+
+        <div class="ltv-summary">
+            <div class="ltv-box">
+                <div class="ltv-label">LTV Cliente Una Sola Línea</div>
+                <div class="ltv-value">€15K–€60K</div>
+            </div>
+            <div class="ltv-box">
+                <div class="ltv-label">LTV Cliente 2–3 Líneas</div>
+                <div class="ltv-value">€80K–€180K</div>
+            </div>
+            <div class="ltv-box">
+                <div class="ltv-label">LTV Cliente Cross-Line Completo</div>
+                <div class="ltv-value" style="color:#10b981;">€250K+</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
